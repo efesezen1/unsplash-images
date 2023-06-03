@@ -3,14 +3,17 @@ import axios from 'axios'
 import { useGlobalContext } from './context'
 import { useState } from 'react'
 
+
 const Gallery = () => {
+   const API_KEY =import.meta.env.VITE_API_KEY
+   console.log(API_KEY);
    const [isLiked, setIsLiked] = useState(false)
    const { setSearch, search } = useGlobalContext()
    const response = useQuery({
       queryKey: ['images', search],
       queryFn: () =>
          axios.get(
-            `https://api.unsplash.com/search/photos/?client_id=LFrWh2Ma4_nVlC2zMEm6BQcq9yWvidhqJZP8Ig21ysc&query=${search}`
+            `https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${search}`
          ),
    })
 
